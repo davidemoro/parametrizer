@@ -26,7 +26,7 @@ docs_require = [
 
 setup(
     name='parametrizer',
-    version='0.0.1',
+    version='0.0.2.dev0',
     author='Davide Moro',
     author_email='davide.moro@gmail.com',
     maintainer='Davide Moro',
