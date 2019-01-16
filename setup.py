@@ -26,15 +26,14 @@ docs_require = [
 
 setup(
     name='parametrizer',
-    version='2.0.0.dev0',
+    version='0.0.1',
     author='Davide Moro',
     author_email='davide.moro@gmail.com',
     maintainer='Davide Moro',
     maintainer_email='davide.moro@gmail.com',
     license='Apache Software License 2.0',
     url='https://github.com/davidemoro/parametrizer',
-    description='pytest plugin that let you play a YAML file '
-                'describing some actions and assertions.',
+    description='Simple parametrizer class template',
     long_description=open("README.rst").read() + "\n" +
     open("CHANGES.rst").read(),
     packages=find_packages(),
