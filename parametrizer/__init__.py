@@ -3,6 +3,8 @@
 import json
 from string import Template
 
+from jinja2 import Template as Jinja2Template
+
 
 class Parametrizer(object):
     """ This class let you parametrize your strings
@@ -69,6 +71,17 @@ class Parametrizer(object):
         >>> import pytest
         >>> with pytest.raises(Exception):
         ...     parametrizer.json_loads(value)
+
+
+        >>> value = '{"name": "{! name.upper() !}"}'
+        >>> mapping = {"name": "a name"}
+        >>> parametrizer = Parametrizer(mapping)
+
+        With the ``parametrize`` method you'll get a parametrized
+        string:
+
+        >>> parametrizer.parametrize(value)
+        '{"name": "A NAME"}'
     """
 
     def __init__(self, mapping):
@@ -77,7 +90,11 @@ class Parametrizer(object):
     def parametrize(self, value):
         """ Return the value with template substitution """
         template = Template(value)
-        return template.safe_substitute(**self.mapping)
+        return Jinja2Template(
+            template.safe_substitute(**self.mapping),
+            variable_start_string='{!',
+            variable_end_string='!}').render(
+                **self.mapping)
 
     def json_loads(self, value):
         """ Return the json load of template substitution """
