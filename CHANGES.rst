@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.2 (unreleased)
+0.0.2 (2019-03-14)
 ------------------
 
 - Adopt Jinja2 as template engine. You can use ``$name`` and ``${name}`` as usual, now
