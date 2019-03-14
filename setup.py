@@ -15,6 +15,7 @@ def read(fname):
 
 
 install_requires = [
+    'Jinja2',
 ]
 
 tests_require = [
