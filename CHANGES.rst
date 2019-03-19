@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.0.3 (unreleased)
+0.0.3 (2019-03-19)
 ------------------
 
 - Provide a different mechanism in parametrize: variable substitution (mapping)
