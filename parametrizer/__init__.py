@@ -82,10 +82,28 @@ class Parametrizer(object):
 
         >>> parametrizer.parametrize(value)
         '{"name": "A NAME"}'
+
+        >>> import string
+        >>> context = {
+        ...     'variables': {'foo': 'bar', 'barbaz': 'bar baz'},
+        ...     'capwords': string.capwords}
+        >>> parametrizer = Parametrizer(context['variables'],
+        ...     context=context)
+        >>> parametrizer.parametrize('$foo')
+        'bar'
+        >>> parametrizer.parametrize('{! variables["foo"].upper() !}')
+        'BAR'
+        >>> parametrizer.parametrize('{! "$foo".upper() !}')
+        'BAR'
+        >>> parametrizer.parametrize('{! capwords(variables["barbaz"]) !}')
+        'Bar Baz'
+        >>> parametrizer.parametrize('{! capwords("$barbaz") !}')
+        'Bar Baz'
     """
 
-    def __init__(self, mapping):
+    def __init__(self, mapping, context={}):
         self.mapping = mapping
+        self.context = context or mapping
 
     def parametrize(self, value):
         """ Return the value with template substitution """
@@ -94,7 +112,7 @@ class Parametrizer(object):
             template.safe_substitute(**self.mapping),
             variable_start_string='{!',
             variable_end_string='!}').render(
-                **self.mapping)
+                **self.context)
 
     def json_loads(self, value):
         """ Return the json load of template substitution """

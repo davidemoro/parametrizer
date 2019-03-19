@@ -4,8 +4,8 @@ Changelog
 0.0.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
+- Provide a different mechanism in parametrize: variable substitution (mapping)
+  and jinja context (context)
 
 0.0.2 (2019-03-14)
 ------------------
